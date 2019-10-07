@@ -129,10 +129,12 @@ module.exports = function(file, opt) {
             var timeout = setTimeout(trykillfn, opt.timeout * 1000);
             worker.once('exit', clearTimeout.bind(this, timeout));
             // possible leftover worker that has no channel
-            // estabilished will throw. Ignore.
+            // established will throw. Ignore.
             try {
+              if (worker.isConnected()) {
                 worker.send({cmd: 'disconnect'});
                 worker.disconnect();
+              }
             } catch (e) { }
         } else {
             process.nextTick(trykillfn);

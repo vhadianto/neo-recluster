@@ -1,6 +1,6 @@
-# recluster
+# neo-recluster
 
-Clustering library with support for zero-downtime reloading
+Clustering library with support for zero-downtime reloading. This is a fork of the no-longer maintained recluster.
 
 # usage
 
@@ -8,10 +8,10 @@ If server.js is your regular http server (e.g. express), create
 cluster.js and add:
 
 ```js
-var recluster = require('recluster'),
-    path = require('path');
+const recluster = require('neo-recluster');
+const path = require('path');
 
-var cluster = recluster(path.join(__dirname, 'server.js'));
+const cluster = recluster(path.join(__dirname, 'server.js'));
 cluster.run();
 
 process.on('SIGUSR2', function() {
